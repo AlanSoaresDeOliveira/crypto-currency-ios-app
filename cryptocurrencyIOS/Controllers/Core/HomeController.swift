@@ -8,10 +8,31 @@
 import UIKit
 
 private let reuseIdentifier = "TrendingCell"
+private let cellHistoryIdentifier = "CellIdentifier"
+private let headerIdentifier = "HeaderIdentifier"
 
 class HomeController: UIViewController, UICollectionViewDelegate {
     
     // MARK: - Porperties
+    lazy var contentViewSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 400)
+    
+    lazy var scrollView: UIScrollView = {
+        let view = UIScrollView(frame: .zero)
+        view.backgroundColor = UIColor(named: "secondarypurple")
+        view.frame = self.view.bounds
+        view.contentSize = contentViewSize
+        view.autoresizingMask = .flexibleHeight
+        view.showsHorizontalScrollIndicator = true
+        view.bounces = true
+        return view
+    }()
+    
+    lazy var containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.frame.size = contentViewSize
+        return view
+    }()
     
     private lazy var trendingTable: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -19,6 +40,17 @@ class HomeController: UIViewController, UICollectionViewDelegate {
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.register(TrendingCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        return cv
+    }()
+    
+    private lazy var transactionHistoryColletion: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.layer.cornerRadius = 15
+        cv.register(TransactionHistoryCell.self, forCellWithReuseIdentifier: cellHistoryIdentifier)
+//        cv.register(TransactionHistoryHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
         return cv
     }()
     
@@ -52,14 +84,6 @@ class HomeController: UIViewController, UICollectionViewDelegate {
         
         view.addSubview(trendingLabel)
         trendingLabel.anchor(top: lastHourLabel.bottomAnchor, left: view.leftAnchor , paddingTop: 8, paddingLeft: 12)
-        
-        view.addSubview(trendingTable)
-        trendingTable.backgroundColor = UIColor.clear
-//        trendingTable.backgroundColor = .blue
-        trendingTable.delegate = self
-        trendingTable.dataSource = self
-        trendingTable.showsHorizontalScrollIndicator = false
-        trendingTable.anchor(left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingBottom: -90, height: 180)
         
         return view
     }()
@@ -106,6 +130,16 @@ class HomeController: UIViewController, UICollectionViewDelegate {
     
     private let priceAlertView = PriceAlertView()
     
+    private let noticeView = NoticeView()
+    
+    private let noticeView2 = NoticeView()
+    
+    private let noticeView3 = NoticeView()
+    
+    private let noticeView4 = NoticeView()
+    
+//    private let transactionHistory = TransactionHistoryView()
+    
     
     // MARK: - Lifecycle
     
@@ -121,16 +155,37 @@ class HomeController: UIViewController, UICollectionViewDelegate {
     }
     
     // MARK: - Helpers
-    
+        
     func configeUI() {
+        
         view.backgroundColor = .systemGray6
         
-        view.addSubview(header)
-        header.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, height: 290)
+        view.addSubview(scrollView)
+        scrollView.addSubview(containerView)
         
-        view.addSubview(priceAlertView)
-        priceAlertView.anchor(top: header.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 100, paddingLeft: 12,  paddingRight: 12, height: 120)
+        containerView.backgroundColor = .systemGray6
         
+        containerView.addSubview(header)
+        header.anchor(top: scrollView.topAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, height: 290)
+        
+        containerView.addSubview(trendingTable)
+        trendingTable.backgroundColor = UIColor.clear
+        trendingTable.delegate = self
+        trendingTable.dataSource = self
+        trendingTable.showsHorizontalScrollIndicator = false
+        trendingTable.anchor(top: header.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: -90, height: 180)
+        
+        containerView.addSubview(priceAlertView)
+        priceAlertView.anchor(top: header.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 100, paddingLeft: 12,  paddingRight: 12, height: 120)
+
+        containerView.addSubview(noticeView)
+        noticeView.anchor(top: priceAlertView.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 20, paddingLeft: 12, paddingRight: 12, height: 150)
+        
+        view.addSubview(transactionHistoryColletion)
+        transactionHistoryColletion.backgroundColor = .white
+        transactionHistoryColletion.delegate = self
+        transactionHistoryColletion.dataSource = self
+        transactionHistoryColletion.anchor(top: noticeView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 20, paddingLeft: 12, paddingRight: 12, height: 500)
         
     }
 }
@@ -139,10 +194,16 @@ class HomeController: UIViewController, UICollectionViewDelegate {
 
 extension HomeController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == self.transactionHistoryColletion {
+            return CGSize(width: view.frame.width, height: 40)
+        }
         return CGSize(width: 180, height: 150)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if collectionView == self.transactionHistoryColletion {
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        }
         return UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 0)
     }
 }
@@ -151,10 +212,20 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
 
 extension HomeController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if collectionView == self.transactionHistoryColletion {
+            return 10
+        }
         return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == self.transactionHistoryColletion {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellHistoryIdentifier, for: indexPath) as! TransactionHistoryCell
+            return cell
+        }
+        
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! TrendingCell
         return cell
     }
