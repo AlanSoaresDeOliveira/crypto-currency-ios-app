@@ -25,7 +25,7 @@ class TransactionHistoryHeader: UICollectionReusableView {
         super.init(frame: frame)
         
         addSubview(titleLabel)
-        titleLabel.anchor(top: topAnchor, left: leftAnchor, paddingTop: 24, paddingLeft: 24)
+        titleLabel.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor,paddingTop: 24, paddingLeft: 24)
     }
     
     required init?(coder: NSCoder) {

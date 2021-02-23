@@ -39,6 +39,7 @@
 		0706332725E2888F003041E3 /* PricesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0706332625E2888F003041E3 /* PricesController.swift */; };
 		0706332A25E2889E003041E3 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0706332925E2889D003041E3 /* SettingsController.swift */; };
 		0706332E25E2AD1A003041E3 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0706332D25E2AD1A003041E3 /* Extentions.swift */; };
+		073F09C625E51D15007AE1B0 /* TransactionCellTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073F09C525E51D15007AE1B0 /* TransactionCellTable.swift */; };
 		0746198D25E3E4C60035C143 /* NoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0746198C25E3E4C60035C143 /* NoticeView.swift */; };
 		0746199625E3F4BE0035C143 /* TransactionHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0746199525E3F4BE0035C143 /* TransactionHistoryCell.swift */; };
 		0746199A25E404B80035C143 /* TransactionHistoryHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0746199925E404B80035C143 /* TransactionHistoryHeader.swift */; };
@@ -81,6 +82,7 @@
 		0706332625E2888F003041E3 /* PricesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricesController.swift; sourceTree = "<group>"; };
 		0706332925E2889D003041E3 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		0706332D25E2AD1A003041E3 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
+		073F09C525E51D15007AE1B0 /* TransactionCellTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCellTable.swift; sourceTree = "<group>"; };
 		0746198C25E3E4C60035C143 /* NoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeView.swift; sourceTree = "<group>"; };
 		0746199525E3F4BE0035C143 /* TransactionHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryCell.swift; sourceTree = "<group>"; };
 		0746199925E404B80035C143 /* TransactionHistoryHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionHistoryHeader.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				0746198C25E3E4C60035C143 /* NoticeView.swift */,
 				0746199925E404B80035C143 /* TransactionHistoryHeader.swift */,
 				0746199525E3F4BE0035C143 /* TransactionHistoryCell.swift */,
+				073F09C525E51D15007AE1B0 /* TransactionCellTable.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				0706332425E2887A003041E3 /* TransactionCenterController.swift in Sources */,
 				0706332A25E2889E003041E3 /* SettingsController.swift in Sources */,
 				0706332725E2888F003041E3 /* PricesController.swift in Sources */,
+				073F09C625E51D15007AE1B0 /* TransactionCellTable.swift in Sources */,
 				0706331825E28715003041E3 /* CryptoDetailController.swift in Sources */,
 				070632D625E28175003041E3 /* SceneDelegate.swift in Sources */,
 			);

@@ -12,9 +12,13 @@ private let cellHistoryIdentifier = "CellIdentifier"
 private let headerIdentifier = "HeaderIdentifier"
 
 class HomeController: UIViewController, UICollectionViewDelegate {
+       
     
     // MARK: - Porperties
-    lazy var contentViewSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 400)
+    
+    private var statusBarHeight = CGFloat(0)
+        
+    lazy var contentViewSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 500)
     
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView(frame: .zero)
@@ -50,8 +54,14 @@ class HomeController: UIViewController, UICollectionViewDelegate {
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.layer.cornerRadius = 15
         cv.register(TransactionHistoryCell.self, forCellWithReuseIdentifier: cellHistoryIdentifier)
-//        cv.register(TransactionHistoryHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerIdentifier)
+        
         return cv
+    }()
+    
+    private lazy var transactionTable: UITableView = {
+        let table = UITableView()
+        
+        return table
     }()
     
     private lazy var backgroundImageHeader: UIImageView = {
@@ -65,10 +75,10 @@ class HomeController: UIViewController, UICollectionViewDelegate {
         let view = UIView()
         
         view.addSubview(backgroundImageHeader)
-        backgroundImageHeader.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, height: 290)
+        backgroundImageHeader.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: -statusBarHeight, height: 290)
         
         view.addSubview(bellIconNotificationButton)
-        bellIconNotificationButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, right: view.safeAreaLayoutGuide.rightAnchor, paddingRight: 24)
+        bellIconNotificationButton.anchor(top: view.topAnchor, right: view.rightAnchor, paddingRight: 24)
         
         view.addSubview(titleLabel)
         titleLabel.centerX(inView: view)
@@ -131,21 +141,15 @@ class HomeController: UIViewController, UICollectionViewDelegate {
     private let priceAlertView = PriceAlertView()
     
     private let noticeView = NoticeView()
-    
-    private let noticeView2 = NoticeView()
-    
-    private let noticeView3 = NoticeView()
-    
-    private let noticeView4 = NoticeView()
-    
-//    private let transactionHistory = TransactionHistoryView()
-    
+   
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getStatusBarHeight()
         configeUI()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -157,7 +161,6 @@ class HomeController: UIViewController, UICollectionViewDelegate {
     // MARK: - Helpers
         
     func configeUI() {
-        
         view.backgroundColor = .systemGray6
         
         view.addSubview(scrollView)
@@ -166,36 +169,46 @@ class HomeController: UIViewController, UICollectionViewDelegate {
         containerView.backgroundColor = .systemGray6
         
         containerView.addSubview(header)
-        header.anchor(top: scrollView.topAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, height: 290)
+        header.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, height: 290)
         
         containerView.addSubview(trendingTable)
         trendingTable.backgroundColor = UIColor.clear
         trendingTable.delegate = self
         trendingTable.dataSource = self
         trendingTable.showsHorizontalScrollIndicator = false
-        trendingTable.anchor(top: header.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: -90, height: 180)
+        trendingTable.anchor(top: header.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: -(statusBarHeight + 15 + 75), height: 180)
         
         containerView.addSubview(priceAlertView)
-        priceAlertView.anchor(top: header.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 100, paddingLeft: 12,  paddingRight: 12, height: 120)
+        priceAlertView.anchor(top: trendingTable.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 5, paddingLeft: 12,  paddingRight: 12, height: 120)
 
         containerView.addSubview(noticeView)
         noticeView.anchor(top: priceAlertView.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 20, paddingLeft: 12, paddingRight: 12, height: 150)
         
-        view.addSubview(transactionHistoryColletion)
-        transactionHistoryColletion.backgroundColor = .white
+        
+        transactionHistoryColletion.isScrollEnabled = false
+        containerView.addSubview(transactionHistoryColletion)
         transactionHistoryColletion.delegate = self
         transactionHistoryColletion.dataSource = self
-        transactionHistoryColletion.anchor(top: noticeView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 20, paddingLeft: 12, paddingRight: 12, height: 500)
-        
+        transactionHistoryColletion.anchor(top: noticeView.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 20, paddingLeft: 12, paddingRight: 12, height: 600)
+    }
+    
+    func getStatusBarHeight() {
+        if #available(iOS 13.0, *) {
+            let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+            self.statusBarHeight = window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        } else {
+            self.statusBarHeight = UIApplication.shared.statusBarFrame.height
+        }
+        print("DEBUG: height of status bar \(statusBarHeight)")
     }
 }
 
-// MARK: - UICollectionViewDelegate
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension HomeController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.transactionHistoryColletion {
-            return CGSize(width: view.frame.width, height: 40)
+            return CGSize(width: view.frame.width - 24, height: 60)
         }
         return CGSize(width: 180, height: 150)
     }
@@ -205,6 +218,14 @@ extension HomeController: UICollectionViewDelegateFlowLayout {
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
         return UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
+        if collectionView == self.transactionHistoryColletion {
+            return CGFloat(0)
+        }
+        return CGFloat(10)
     }
 }
 

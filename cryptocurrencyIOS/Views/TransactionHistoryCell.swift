@@ -14,9 +14,6 @@ class TransactionHistoryCell: UICollectionViewCell {
     private let transactionIconImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
-//        image.tintColor = UIColor(named: "primarypurple")
-        
-//        image.backgroundColor = .red
         image.image = #imageLiteral(resourceName: "transaction")
         image.tintColor = UIColor(named: "primarypurple")
         return image
@@ -61,7 +58,7 @@ class TransactionHistoryCell: UICollectionViewCell {
 //        self.layer.shadowOffset = CGSize(width: 0, height: 4)
 //        self.layer.shadowRadius = 4.65
 //        self.layer.shadowOpacity = 0.3
-//        self.layer.cornerRadius = 10
+////        self.layer.cornerRadius = 10
 //        self.layer.masksToBounds = false
 //    }
     
@@ -91,6 +88,11 @@ class TransactionHistoryCell: UICollectionViewCell {
         addSubview(amountLabel)
         amountLabel.centerY(inView: nextImage)
         amountLabel.anchor(right: nextImage.leftAnchor, paddingLeft: 12 , paddingRight: 12)
+        
+        let underlineView = UIView()
+        underlineView.backgroundColor = .systemGroupedBackground
+        addSubview(underlineView)
+        underlineView.anchor(left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingLeft: 24, paddingRight: 24, height: 1)
     }
     
     required init?(coder: NSCoder) {
