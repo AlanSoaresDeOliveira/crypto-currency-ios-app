@@ -42,7 +42,6 @@
 		073F09C625E51D15007AE1B0 /* TransactionCellTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073F09C525E51D15007AE1B0 /* TransactionCellTable.swift */; };
 		0746198D25E3E4C60035C143 /* NoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0746198C25E3E4C60035C143 /* NoticeView.swift */; };
 		0746199625E3F4BE0035C143 /* TransactionHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0746199525E3F4BE0035C143 /* TransactionHistoryCell.swift */; };
-		0746199A25E404B80035C143 /* TransactionHistoryHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0746199925E404B80035C143 /* TransactionHistoryHeader.swift */; };
 		07F1C76B25E2CAA7009829DE /* TrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F1C76A25E2CAA7009829DE /* TrendingCell.swift */; };
 		07F1C76E25E2E19A009829DE /* PriceAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F1C76D25E2E19A009829DE /* PriceAlertView.swift */; };
 /* End PBXBuildFile section */
@@ -85,7 +84,6 @@
 		073F09C525E51D15007AE1B0 /* TransactionCellTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCellTable.swift; sourceTree = "<group>"; };
 		0746198C25E3E4C60035C143 /* NoticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeView.swift; sourceTree = "<group>"; };
 		0746199525E3F4BE0035C143 /* TransactionHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryCell.swift; sourceTree = "<group>"; };
-		0746199925E404B80035C143 /* TransactionHistoryHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionHistoryHeader.swift; sourceTree = "<group>"; };
 		07F1C76A25E2CAA7009829DE /* TrendingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCell.swift; sourceTree = "<group>"; };
 		07F1C76D25E2E19A009829DE /* PriceAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceAlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,7 +181,6 @@
 				07F1C76A25E2CAA7009829DE /* TrendingCell.swift */,
 				07F1C76D25E2E19A009829DE /* PriceAlertView.swift */,
 				0746198C25E3E4C60035C143 /* NoticeView.swift */,
-				0746199925E404B80035C143 /* TransactionHistoryHeader.swift */,
 				0746199525E3F4BE0035C143 /* TransactionHistoryCell.swift */,
 				073F09C525E51D15007AE1B0 /* TransactionCellTable.swift */,
 			);
@@ -319,7 +316,6 @@
 				070632D825E28175003041E3 /* MainController.swift in Sources */,
 				0706331C25E2874C003041E3 /* TransactionController.swift in Sources */,
 				07F1C76B25E2CAA7009829DE /* TrendingCell.swift in Sources */,
-				0746199A25E404B80035C143 /* TransactionHistoryHeader.swift in Sources */,
 				07F1C76E25E2E19A009829DE /* PriceAlertView.swift in Sources */,
 				0746199625E3F4BE0035C143 /* TransactionHistoryCell.swift in Sources */,
 				0706332E25E2AD1A003041E3 /* Extentions.swift in Sources */,

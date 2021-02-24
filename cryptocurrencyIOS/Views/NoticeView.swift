@@ -28,7 +28,7 @@ class NoticeView: UIView {
         return label
     }()
     
-    private let learnMoreButton: UIButton = {
+    private lazy var learnMoreButton: UIButton = {
         let button = UIButton(type: .system)
         let attr: [NSAttributedString.Key: Any] = [
             .font: UIFont.boldSystemFont(ofSize: 14),

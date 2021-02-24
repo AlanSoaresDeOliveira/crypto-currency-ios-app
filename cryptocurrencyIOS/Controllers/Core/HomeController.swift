@@ -22,7 +22,7 @@ class HomeController: UIViewController, UICollectionViewDelegate {
     
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView(frame: .zero)
-        view.backgroundColor = UIColor(named: "secondarypurple")
+        view.backgroundColor = .systemGray6
         view.frame = self.view.bounds
         view.contentSize = contentViewSize
         view.autoresizingMask = .flexibleHeight
@@ -141,6 +141,37 @@ class HomeController: UIViewController, UICollectionViewDelegate {
     private let priceAlertView = PriceAlertView()
     
     private let noticeView = NoticeView()
+    
+    private lazy var viewTransaction: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white        
+        
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 4)
+        view.layer.shadowRadius = 4.65
+        view.layer.shadowOpacity = 0.3
+        view.layer.cornerRadius = 15
+        view.layer.masksToBounds = false
+       
+        view.addSubview(titleTransactionLabel)
+        titleTransactionLabel.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 8 , paddingLeft:  24,height: 50)
+        
+        transactionHistoryColletion.isScrollEnabled = false
+        view.addSubview(transactionHistoryColletion)
+        transactionHistoryColletion.delegate = self
+        transactionHistoryColletion.dataSource = self
+        transactionHistoryColletion.anchor(top: titleTransactionLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 0, height: 600)
+        
+        return view
+    }()
+    
+    private lazy var titleTransactionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Histórico de Transação"
+        label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.textColor = .black
+        return label
+    }()
    
     
     // MARK: - Lifecycle
@@ -184,12 +215,8 @@ class HomeController: UIViewController, UICollectionViewDelegate {
         containerView.addSubview(noticeView)
         noticeView.anchor(top: priceAlertView.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 20, paddingLeft: 12, paddingRight: 12, height: 150)
         
-        
-        transactionHistoryColletion.isScrollEnabled = false
-        containerView.addSubview(transactionHistoryColletion)
-        transactionHistoryColletion.delegate = self
-        transactionHistoryColletion.dataSource = self
-        transactionHistoryColletion.anchor(top: noticeView.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 20, paddingLeft: 12, paddingRight: 12, height: 600)
+        containerView.addSubview(viewTransaction)
+        viewTransaction.anchor(top: noticeView.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 20, paddingLeft: 12, paddingRight: 12, height: 650)
     }
     
     func getStatusBarHeight() {
@@ -199,7 +226,6 @@ class HomeController: UIViewController, UICollectionViewDelegate {
         } else {
             self.statusBarHeight = UIApplication.shared.statusBarFrame.height
         }
-        print("DEBUG: height of status bar \(statusBarHeight)")
     }
 }
 
@@ -246,8 +272,15 @@ extension HomeController: UICollectionViewDataSource {
             return cell
         }
         
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! TrendingCell
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.trendingTable {
+            let controller = CryptoDetailController()
+            navigationController?.pushViewController(controller, animated: true)
+        }
+        
     }
 }

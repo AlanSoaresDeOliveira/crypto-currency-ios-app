@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainController: UITabBarController {
+class MainController: UITabBarController, UITabBarControllerDelegate {
     
     // MARK: - Properties
     
@@ -68,6 +68,8 @@ class MainController: UITabBarController {
         nav.title = title
         return nav
     }
+    
+    // MARK: - UITabBarControllerDelegate
 }
 
 
