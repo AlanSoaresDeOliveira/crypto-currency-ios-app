@@ -103,6 +103,7 @@ class HomeController: UIViewController, UICollectionViewDelegate {
         button.setImage(#imageLiteral(resourceName: "notification_white"), for: .normal)
         button.setDimensions(width: 35, height: 35)
         button.tintColor = .white
+        button.addTarget(self, action: #selector(handleBell), for: .touchUpInside)
         return button
     }()
     
@@ -226,6 +227,12 @@ class HomeController: UIViewController, UICollectionViewDelegate {
         } else {
             self.statusBarHeight = UIApplication.shared.statusBarFrame.height
         }
+    }
+    
+    // MARK: - Selectors
+    
+    @objc func handleBell() {
+        print("BELL")
     }
 }
 

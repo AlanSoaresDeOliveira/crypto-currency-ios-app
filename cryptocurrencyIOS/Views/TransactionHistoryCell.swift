@@ -83,7 +83,7 @@ class TransactionHistoryCell: UICollectionViewCell {
         amountLabel.anchor(right: nextImage.leftAnchor, paddingLeft: 8 , paddingRight: 0)
         
         let underlineView = UIView()
-        underlineView.backgroundColor = .systemGroupedBackground
+        underlineView.backgroundColor = .systemGray5
         addSubview(underlineView)
         underlineView.anchor(left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingLeft: 24, paddingRight: 24, height: 1)
     }
