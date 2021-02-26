@@ -203,7 +203,7 @@ class TransactionController: UIViewController {
         headerView.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor,  height: 120)
         
         containerView.addSubview(containerBuyView)
-        containerBuyView.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 100, paddingLeft: 12, paddingRight: 12, height: 280)
+        containerBuyView.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 100, paddingLeft: 12, paddingRight: 12, height: 250)
         
         containerView.addSubview(viewTransaction)
         viewTransaction.anchor(top: containerBuyView.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 20, paddingLeft: 12, paddingRight: 12, height: 650)

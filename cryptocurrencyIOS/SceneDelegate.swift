@@ -13,10 +13,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+//        window?.rootViewController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
+//        window?.makeKeyAndVisible()
+//        
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
+////            self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+//            guard let scene = (scene as? UIWindowScene) else { return }
+//            self.window = UIWindow(windowScene: scene)
+//            self.window?.rootViewController = MainController()
+//            self.window?.makeKeyAndVisible()
+//        }
+        
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         window?.rootViewController = MainController()
-        window?.makeKeyAndVisible()      
+        window?.makeKeyAndVisible()
         
     }
 

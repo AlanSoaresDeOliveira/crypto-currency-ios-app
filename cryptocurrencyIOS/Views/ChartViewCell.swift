@@ -14,12 +14,19 @@ class ChartViewCell: UICollectionViewCell {
     
     lazy var yvalues: [ChartDataEntry] = [
         ChartDataEntry(x: 15.0, y: 38.0),
+        ChartDataEntry(x: 17.0, y: 35.0),
         ChartDataEntry(x: 22.5, y: 30.0),
+        ChartDataEntry(x: 25.0, y: 31.0),
         ChartDataEntry(x: 30.0, y: 33.0),
+        ChartDataEntry(x: 35.0, y: 25.0),
         ChartDataEntry(x: 37.5, y: 17.0),
+        ChartDataEntry(x: 40.0, y: 18.0),
         ChartDataEntry(x: 45.0, y: 19.0),
+        ChartDataEntry(x: 49.0, y: 23.0),
         ChartDataEntry(x: 52.5, y: 35.0),
-        ChartDataEntry(x: 60.0, y: 42.0),
+        ChartDataEntry(x: 55.0, y: 30.0),
+        ChartDataEntry(x: 60.0, y: 20.0),
+
     ]
     
     lazy var lineCharView: LineChartView = {
@@ -30,16 +37,15 @@ class ChartViewCell: UICollectionViewCell {
         chartView.xAxis.labelPosition = .bottom
         chartView.xAxis.drawGridLinesEnabled = false
         chartView.xAxis.setLabelCount(4, force: true)
+        chartView.xAxis.valueFormatter = YAxisValueFormatter()
         
         chartView.leftAxis.setLabelCount(3, force: true)
         chartView.leftAxis.drawAxisLineEnabled = false
-        
-        chartView.xAxis.valueFormatter = YAxisValueFormatter()
-        
+                
         chartView.isUserInteractionEnabled = false
         chartView.legend.enabled = false
         
-//        chartView.animate(xAxisDuration: 2.5)
+        chartView.animate(xAxisDuration: 2.5)
         
         return chartView
     }()
@@ -84,6 +90,7 @@ class ChartViewCell: UICollectionViewCell {
         set1.setCircleColor(purpleNS)
         set1.circleHoleColor = purpleNS
         set1.mode = .cubicBezier
+//        set1.drawCirclesEnabled = false
                 
         set1.drawHorizontalHighlightIndicatorEnabled = false
         set1.drawVerticalHighlightIndicatorEnabled = false

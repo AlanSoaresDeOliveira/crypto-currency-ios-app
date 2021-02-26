@@ -78,8 +78,6 @@ class CryptoDetailController: UIViewController {
         
         view.addSubview(porcentageLabelChart)
         porcentageLabelChart.anchor(top: amountLabelChart.bottomAnchor, right: amountLabelChart.rightAnchor, paddingTop: 4)
-               
-        
         
         view.addSubview(chartCoinView)
         chartCoinView.backgroundColor = UIColor.clear
@@ -90,12 +88,6 @@ class CryptoDetailController: UIViewController {
         
         view.addSubview(optionButtons)
         optionButtons.anchor(top: chartCoinView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 8, paddingLeft: 12, paddingRight: 12, height: 30)
-//        let stack = UIStackView(arrangedSubviews: [chartOptionButton1, chartOptionButton2, chartOptionButton3, chartOptionButton4, chartOptionButton5])
-//        stack.axis = .horizontal
-//        stack.spacing = 4
-//        stack.distribution = .fillEqually
-//        view.addSubview(stack)
-//        stack.anchor(top: chartCoinView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 8, paddingLeft: 12, paddingRight: 12, height: 30)
         
         view.addSubview(pageControl)
         pageControl.centerX(inView: view)
@@ -250,62 +242,12 @@ class CryptoDetailController: UIViewController {
         pc.currentPage = 0
         pc.numberOfPages = pages.count
         pc.currentPageIndicatorTintColor = UIColor(named: "secondarypurple")?.withAlphaComponent(1)
-        pc.pageIndicatorTintColor = UIColor(red: 249/255, green: 207/255, blue: 224/255, alpha: 1)
+        pc.pageIndicatorTintColor = UIColor(red: 230/255, green: 207/255, blue: 224/255, alpha: 1)
         pc.isUserInteractionEnabled = false
 //        pc.addTarget(self, action: #selector(tappedPageControl), for: .touchUpInside)
         return pc
     }()
-    
-    private lazy var chartOptionButton1: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("1 hr", for: .normal)
-        button.backgroundColor = .systemGray3
-        button.layer.cornerRadius = 30 / 2
-        button.setTitleColor(.darkGray, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        return button
-    }()
-    
-    private lazy var chartOptionButton2: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("3 Days", for: .normal)
-        button.backgroundColor = .systemGray3
-        button.layer.cornerRadius = 30 / 2
-        button.setTitleColor(.darkGray, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        return button
-    }()
-    
-    private lazy var chartOptionButton3: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("1 Week", for: .normal)
-        button.backgroundColor = .systemGray3
-        button.layer.cornerRadius = 30 / 2
-        button.setTitleColor(.darkGray, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        return button
-    }()
-    
-    private lazy var chartOptionButton4: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("1 Month", for: .normal)
-        button.backgroundColor = .systemGray3
-        button.layer.cornerRadius = 30 / 2
-        button.setTitleColor(.darkGray, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        return button
-    }()
-    
-    private lazy var chartOptionButton5: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("3 Months", for: .normal)
-        button.backgroundColor = .systemGray3
-        button.layer.cornerRadius = 30 / 2
-        button.setTitleColor(.darkGray, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        return button
-    }()
-    
+       
     private lazy var optionButtons = CryptoDetailView()
     
     // MARK: - Lifecycle
@@ -357,8 +299,8 @@ class CryptoDetailController: UIViewController {
         coinAbout.anchor(top: containerBuyView.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor,
                          paddingTop: 20, paddingLeft: 12, paddingRight: 12, height: 150)
         
-        containerView.addSubview(priceAlertView)
-        priceAlertView.anchor(top: coinAbout.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 20, paddingLeft: 12,  paddingRight: 12, height: 120)
+//        containerView.addSubview(priceAlertView)
+//        priceAlertView.anchor(top: coinAbout.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 20, paddingLeft: 12,  paddingRight: 12, height: 120)
         
     }
     

@@ -47,7 +47,7 @@ class CoinAboutView: UIView {
         titleLabel.anchor(top: topAnchor, left: leftAnchor, paddingTop: 16, paddingLeft: 16)
         
         addSubview(descriptionLabel)
-        descriptionLabel.anchor(top: titleLabel.bottomAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 8, paddingLeft: 16, paddingRight: 16)
+        descriptionLabel.anchor( left: leftAnchor, bottom: bottomAnchor,right: rightAnchor, paddingLeft: 16, paddingBottom: 16, paddingRight: 16, height: 100)
     }
     
     required init?(coder: NSCoder) {

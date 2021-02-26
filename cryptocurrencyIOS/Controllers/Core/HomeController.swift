@@ -12,7 +12,6 @@ private let cellHistoryIdentifier = "CellIdentifier"
 private let headerIdentifier = "HeaderIdentifier"
 
 class HomeController: UIViewController, UICollectionViewDelegate {
-       
     
     // MARK: - Porperties
     
@@ -75,7 +74,8 @@ class HomeController: UIViewController, UICollectionViewDelegate {
         let view = UIView()
         
         view.addSubview(backgroundImageHeader)
-        backgroundImageHeader.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: -statusBarHeight, height: 290)
+        backgroundImageHeader.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor,
+                                     paddingTop: -statusBarHeight, height: 290)
         
         view.addSubview(bellIconNotificationButton)
         bellIconNotificationButton.anchor(top: view.topAnchor, right: view.rightAnchor, paddingRight: 24)
@@ -93,7 +93,8 @@ class HomeController: UIViewController, UICollectionViewDelegate {
         lastHourLabel.anchor(top: amountLabel.bottomAnchor, paddingTop: 6)
         
         view.addSubview(trendingLabel)
-        trendingLabel.anchor(top: lastHourLabel.bottomAnchor, left: view.leftAnchor , paddingTop: 8, paddingLeft: 12)
+        trendingLabel.anchor(top: lastHourLabel.bottomAnchor, left: view.leftAnchor ,
+                             paddingTop: 8, paddingLeft: 12)
         
         return view
     }()
@@ -155,13 +156,15 @@ class HomeController: UIViewController, UICollectionViewDelegate {
         view.layer.masksToBounds = false
        
         view.addSubview(titleTransactionLabel)
-        titleTransactionLabel.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 8 , paddingLeft:  24,height: 50)
+        titleTransactionLabel.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor,
+                                     paddingTop: 8 , paddingLeft:  24,height: 50)
         
         transactionHistoryColletion.isScrollEnabled = false
         view.addSubview(transactionHistoryColletion)
         transactionHistoryColletion.delegate = self
         transactionHistoryColletion.dataSource = self
-        transactionHistoryColletion.anchor(top: titleTransactionLabel.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 0, height: 600)
+        transactionHistoryColletion.anchor(top: titleTransactionLabel.bottomAnchor, left: view.leftAnchor,
+                                           right: view.rightAnchor, paddingTop: 0, height: 600)
         
         return view
     }()
@@ -173,7 +176,6 @@ class HomeController: UIViewController, UICollectionViewDelegate {
         label.textColor = .black
         return label
     }()
-   
     
     // MARK: - Lifecycle
     
@@ -181,7 +183,6 @@ class HomeController: UIViewController, UICollectionViewDelegate {
         super.viewDidLoad()
         getStatusBarHeight()
         configeUI()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -201,23 +202,29 @@ class HomeController: UIViewController, UICollectionViewDelegate {
         containerView.backgroundColor = .systemGray6
         
         containerView.addSubview(header)
-        header.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, height: 290)
+        header.anchor(top: containerView.topAnchor, left: containerView.leftAnchor,
+                      right: containerView.rightAnchor,
+                      height: 290)
         
         containerView.addSubview(trendingTable)
         trendingTable.backgroundColor = UIColor.clear
         trendingTable.delegate = self
         trendingTable.dataSource = self
         trendingTable.showsHorizontalScrollIndicator = false
-        trendingTable.anchor(top: header.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: -(statusBarHeight + 15 + 75), height: 180)
+        trendingTable.anchor(top: header.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor,
+                             paddingTop: -(statusBarHeight + 15 + 75), height: 180)
         
         containerView.addSubview(priceAlertView)
-        priceAlertView.anchor(top: trendingTable.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 5, paddingLeft: 12,  paddingRight: 12, height: 120)
+        priceAlertView.anchor(top: trendingTable.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor,
+                              paddingTop: 5, paddingLeft: 12,  paddingRight: 12, height: 120)
 
         containerView.addSubview(noticeView)
-        noticeView.anchor(top: priceAlertView.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 20, paddingLeft: 12, paddingRight: 12, height: 150)
+        noticeView.anchor(top: priceAlertView.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor,
+                          paddingTop: 20, paddingLeft: 12, paddingRight: 12, height: 150)
         
         containerView.addSubview(viewTransaction)
-        viewTransaction.anchor(top: noticeView.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 20, paddingLeft: 12, paddingRight: 12, height: 650)
+        viewTransaction.anchor(top: noticeView.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor,
+                               paddingTop: 20, paddingLeft: 12, paddingRight: 12, height: 650)
     }
     
     func getStatusBarHeight() {

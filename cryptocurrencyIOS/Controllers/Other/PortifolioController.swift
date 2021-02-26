@@ -59,13 +59,11 @@ class PortifolioController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setupBottomControlls()
         view.backgroundColor = .systemGray6
         
         let bottomControlsStackView = UIStackView(arrangedSubviews: [previusButton, pageControl, nextButton])
         bottomControlsStackView.distribution = .fillEqually
         view.addSubview(bottomControlsStackView)
-//        bottomControlsStackView.anchor( left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingBottom: 250,height: 50)
         
         view.addSubview(chartCollection)
         chartCollection.backgroundColor = UIColor.clear

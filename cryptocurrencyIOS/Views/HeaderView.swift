@@ -31,6 +31,10 @@ class HeaderView: UIView {
         label.text = "Back"
         label.tintColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 22)
+        
+        let backTap = UITapGestureRecognizer(target: self, action: #selector(handleDismissal))
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(backTap)
         return label
     }()
     

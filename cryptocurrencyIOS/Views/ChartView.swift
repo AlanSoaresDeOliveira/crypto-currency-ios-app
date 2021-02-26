@@ -64,7 +64,7 @@ class ChartView: UIView {
     class YAxisValueFormatter: IAxisValueFormatter {
         func stringForValue(_ value: Double, axis: AxisBase?) -> String {
             let newValue = String(format: "%.0f", value)
-            return String(newValue) + " min"
+            return String(newValue)+"min"
         }
     }
     

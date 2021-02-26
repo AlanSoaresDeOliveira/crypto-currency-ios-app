@@ -68,8 +68,6 @@ class MainController: UITabBarController, UITabBarControllerDelegate {
         nav.title = title
         return nav
     }
-    
-    // MARK: - UITabBarControllerDelegate
 }
 
 
