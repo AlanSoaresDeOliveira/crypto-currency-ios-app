@@ -18,7 +18,7 @@ class HomeController: UIViewController, UICollectionViewDelegate {
     
     private var statusBarHeight = CGFloat(0)
         
-    lazy var contentViewSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 500)
+    lazy var contentViewSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 700)
     
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView(frame: .zero)

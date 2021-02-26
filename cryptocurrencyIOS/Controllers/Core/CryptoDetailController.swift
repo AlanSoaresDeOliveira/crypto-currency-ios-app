@@ -7,13 +7,17 @@
 
 import UIKit
 
+private let reuseIdentifier = "CharCell"
+
 class CryptoDetailController: UIViewController {
     
     // MARK: - Properties
     
+    let pages = [1, 2 ,3]
+    
     private var statusBarHeight = CGFloat(0)
     
-    private lazy var contentViewSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 100)
+    private lazy var contentViewSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 350)
     
     private lazy var scrollView: UIScrollView = {
         let view = UIScrollView(frame: .zero)
@@ -38,10 +42,14 @@ class CryptoDetailController: UIViewController {
         return view
     }()
     
-    private lazy var chartCoinView: ChartView = {
-        let chart = ChartView()
-        
-        return chart
+    private lazy var chartCoinView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.register(ChartViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        cv.isPagingEnabled = true
+        return cv
     }()
     
     private lazy var chartView: UIView = {
@@ -64,8 +72,31 @@ class CryptoDetailController: UIViewController {
         view.addSubview(bitconForShortLabelChart)
         bitconForShortLabelChart.anchor(top: bitconWalletLabelChart.bottomAnchor, left: bitconWalletLabelChart.leftAnchor, paddingTop: 4)
         
+        view.addSubview(amountLabelChart)
+        amountLabelChart.centerY(inView: bitconWalletLabelChart)
+        amountLabelChart.anchor(right: view.rightAnchor, paddingRight: 12 )
+        
+        view.addSubview(porcentageLabelChart)
+        porcentageLabelChart.anchor(top: amountLabelChart.bottomAnchor, right: amountLabelChart.rightAnchor, paddingTop: 4)
+               
+        
+        
         view.addSubview(chartCoinView)
-        chartCoinView.anchor(top: bitconForShortLabelChart.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 20, paddingLeft: 24, paddingRight: 24)
+        chartCoinView.backgroundColor = UIColor.clear
+        chartCoinView.delegate = self
+        chartCoinView.dataSource = self
+        chartCoinView.showsHorizontalScrollIndicator = false
+        chartCoinView.anchor(top: bitconForShortLabelChart.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor,paddingLeft: 12, paddingRight: 12, height: 150)
+        
+        let stack = UIStackView(arrangedSubviews: [chartOptionButton1, chartOptionButton2, chartOptionButton3, chartOptionButton4, chartOptionButton5])
+        stack.axis = .horizontal
+        stack.distribution = .fillEqually
+        view.addSubview(stack)
+        stack.anchor(top: chartCoinView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 4, paddingLeft: 12, paddingRight: 12, height: 30)
+        
+        view.addSubview(pageControl)
+        pageControl.centerX(inView: view)
+        pageControl.anchor(bottom: view.bottomAnchor, paddingBottom: 8)
         
         return view
     }()
@@ -166,6 +197,22 @@ class CryptoDetailController: UIViewController {
         return label
     }()
     
+    private let amountLabelChart: UILabel = {
+        let label = UILabel()
+        label.text = "R$ 29.455,75"
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textColor = .black
+        return label
+    }()
+    
+    private let porcentageLabelChart: UILabel = {
+        let label = UILabel()
+        label.text = "+7,24%"
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textColor = .systemGreen
+        return label
+    }()
+    
     private let amountLabel: UILabel = {
         let label = UILabel()
         label.text = "R$ 170.435,86"
@@ -195,6 +242,62 @@ class CryptoDetailController: UIViewController {
     
     private let priceAlertView = PriceAlertView()
     
+    private lazy var pageControl: UIPageControl = {
+        let pc = UIPageControl()
+        pc.currentPage = 0
+        pc.numberOfPages = pages.count
+        pc.currentPageIndicatorTintColor = UIColor(named: "secondarypurple")?.withAlphaComponent(1)
+        pc.pageIndicatorTintColor = UIColor(red: 249/255, green: 207/255, blue: 224/255, alpha: 1)
+        pc.isUserInteractionEnabled = false
+//        pc.addTarget(self, action: #selector(tappedPageControl), for: .touchUpInside)
+        return pc
+    }()
+    
+    private lazy var chartOptionButton1: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("1 hr", for: .normal)
+        button.backgroundColor = .systemGray3
+        button.layer.cornerRadius = 30 / 2
+        button.setTitleColor(.darkGray, for: .normal)
+        return button
+    }()
+    
+    private lazy var chartOptionButton2: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("3 Days", for: .normal)
+        button.backgroundColor = .systemGray3
+        button.layer.cornerRadius = 30 / 2
+        button.setTitleColor(.darkGray, for: .normal)
+        return button
+    }()
+    
+    private lazy var chartOptionButton3: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("1 Week", for: .normal)
+        button.backgroundColor = .systemGray3
+        button.layer.cornerRadius = 30 / 2
+        button.setTitleColor(.darkGray, for: .normal)
+        return button
+    }()
+    
+    private lazy var chartOptionButton4: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("1 Month", for: .normal)
+        button.backgroundColor = .systemGray3
+        button.layer.cornerRadius = 30 / 2
+        button.setTitleColor(.darkGray, for: .normal)
+        return button
+    }()
+    
+    private lazy var chartOptionButton5: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("3 Months", for: .normal)
+        button.backgroundColor = .systemGray3
+        button.layer.cornerRadius = 30 / 2
+        button.setTitleColor(.darkGray, for: .normal)
+        return button
+    }()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -215,6 +318,11 @@ class CryptoDetailController: UIViewController {
         tabBarController?.tabBar.isHidden = false
     }
     
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let x = targetContentOffset.pointee.x
+        pageControl.currentPage = Int((x / view.frame.width).rounded())
+    }
+    
     // MARK: - Helpers
     
     func configureUI() {
@@ -230,7 +338,7 @@ class CryptoDetailController: UIViewController {
         headerView.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor,  height: 120)
         
         containerView.addSubview(chartView)
-        chartView.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 100, paddingLeft: 12, paddingRight: 12, height: 400)
+        chartView.anchor(top: containerView.topAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 100, paddingLeft: 12, paddingRight: 12, height: 300)
         
         containerView.addSubview(containerBuyView)
         containerBuyView.anchor(top: chartView.bottomAnchor, left: containerView.leftAnchor, right: containerView.rightAnchor, paddingTop: 20, paddingLeft: 12, paddingRight: 12, height: 150)
@@ -255,6 +363,11 @@ class CryptoDetailController: UIViewController {
     
     // MARK: - Selectors
     
+    @objc func tappedPageControl() {
+        print("Tapped page")
+        
+    }
+    
     @objc func handleToTransaction() {
         let controller = TransactionController()
         navigationController?.pushViewController(controller, animated: true)
@@ -266,7 +379,33 @@ class CryptoDetailController: UIViewController {
 extension CryptoDetailController: HeaderViewDelegate {
     func tappedBack() {
         navigationController?.popViewController(animated: true)
-        print("HERE")
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+
+extension CryptoDetailController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return pages.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ChartViewCell
+        cell.backgroundColor = .red
+        return cell
+    }
+    
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension CryptoDetailController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width - 48, height: 150)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 }
 

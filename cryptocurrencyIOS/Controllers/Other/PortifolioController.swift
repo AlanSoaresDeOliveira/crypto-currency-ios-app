@@ -16,7 +16,7 @@ class PortifolioController: UIViewController {
     
     let pages = [1, 2 ,3]
     
-    private lazy var trendingTable: UICollectionView = {
+    private lazy var chartCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -67,15 +67,15 @@ class PortifolioController: UIViewController {
         view.addSubview(bottomControlsStackView)
 //        bottomControlsStackView.anchor( left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingBottom: 250,height: 50)
         
-        view.addSubview(trendingTable)
-        trendingTable.backgroundColor = UIColor.clear
-        trendingTable.delegate = self
-        trendingTable.dataSource = self
-        trendingTable.showsHorizontalScrollIndicator = false
-        trendingTable.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor,
-                             paddingTop: 20, paddingLeft: 12, paddingRight: 12, height: 350)
+        view.addSubview(chartCollection)
+        chartCollection.backgroundColor = UIColor.clear
+        chartCollection.delegate = self
+        chartCollection.dataSource = self
+        chartCollection.showsHorizontalScrollIndicator = false
+        chartCollection.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor,
+                             paddingTop: 100, paddingLeft: 12, paddingRight: 12, height: 350)
         
-        bottomControlsStackView.anchor( top: trendingTable.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor,
+        bottomControlsStackView.anchor( top: chartCollection.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor,
                                         paddingTop: 20, height: 50)
     }
     
@@ -109,7 +109,7 @@ class PortifolioController: UIViewController {
         let nextIndex = min(pageControl.currentPage + 1, pages.count - 1)
         let indexPath = IndexPath(item: nextIndex, section: 0)
         pageControl.currentPage = nextIndex
-        trendingTable.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        chartCollection.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
     
     @objc func hadlePrev() {
@@ -117,7 +117,7 @@ class PortifolioController: UIViewController {
         let nextIndex = max(pageControl.currentPage - 1, 0)
         let indexPath = IndexPath(item: nextIndex, section: 0)
         pageControl.currentPage = nextIndex
-        trendingTable.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        chartCollection.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
     
 }

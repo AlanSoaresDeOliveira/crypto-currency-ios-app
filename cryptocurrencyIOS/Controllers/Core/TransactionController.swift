@@ -15,7 +15,7 @@ class TransactionController: UIViewController {
     
     private var statusBarHeight = CGFloat(0)
     
-    private lazy var contentViewSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 200)
+    private lazy var contentViewSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 450)
     
     private lazy var scrollView: UIScrollView = {
         let view = UIScrollView(frame: .zero)

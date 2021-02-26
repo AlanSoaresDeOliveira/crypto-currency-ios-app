@@ -39,6 +39,8 @@ class ChartViewCell: UICollectionViewCell {
         chartView.isUserInteractionEnabled = false
         chartView.legend.enabled = false
         
+//        chartView.animate(xAxisDuration: 2.5)
+        
         return chartView
     }()
     
@@ -50,7 +52,9 @@ class ChartViewCell: UICollectionViewCell {
         backgroundColor = .white
         addSubview(lineCharView)
         setData()
-        lineCharView.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor, paddingTop: 24, paddingLeft: 12, paddingRight: 12, height: 150)
+//        lineCharView.anchor(top: topAnchor, left: leftAnchor, right: rightAnchor,paddingLeft: 12, paddingRight: 12, height: 150)
+        
+        lineCharView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
         
     }
     
@@ -72,14 +76,14 @@ class ChartViewCell: UICollectionViewCell {
     }
     
     func setData() {
-        let set1 = LineChartDataSet(entries: yvalues, label: "Subscription")
-        
+        let set1 = LineChartDataSet(entries: yvalues)
         
         set1.lineWidth = 3
         guard let purpleNS = NSUIColor(named: "secondarypurple") else { return }
         set1.setColor(purpleNS)
         set1.setCircleColor(purpleNS)
         set1.circleHoleColor = purpleNS
+        set1.mode = .cubicBezier
                 
         set1.drawHorizontalHighlightIndicatorEnabled = false
         set1.drawVerticalHighlightIndicatorEnabled = false
