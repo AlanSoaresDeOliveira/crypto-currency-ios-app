@@ -88,11 +88,14 @@ class CryptoDetailController: UIViewController {
         chartCoinView.showsHorizontalScrollIndicator = false
         chartCoinView.anchor(top: bitconForShortLabelChart.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor,paddingLeft: 12, paddingRight: 12, height: 150)
         
-        let stack = UIStackView(arrangedSubviews: [chartOptionButton1, chartOptionButton2, chartOptionButton3, chartOptionButton4, chartOptionButton5])
-        stack.axis = .horizontal
-        stack.distribution = .fillEqually
-        view.addSubview(stack)
-        stack.anchor(top: chartCoinView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 4, paddingLeft: 12, paddingRight: 12, height: 30)
+        view.addSubview(optionButtons)
+        optionButtons.anchor(top: chartCoinView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 8, paddingLeft: 12, paddingRight: 12, height: 30)
+//        let stack = UIStackView(arrangedSubviews: [chartOptionButton1, chartOptionButton2, chartOptionButton3, chartOptionButton4, chartOptionButton5])
+//        stack.axis = .horizontal
+//        stack.spacing = 4
+//        stack.distribution = .fillEqually
+//        view.addSubview(stack)
+//        stack.anchor(top: chartCoinView.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, paddingTop: 8, paddingLeft: 12, paddingRight: 12, height: 30)
         
         view.addSubview(pageControl)
         pageControl.centerX(inView: view)
@@ -259,6 +262,7 @@ class CryptoDetailController: UIViewController {
         button.backgroundColor = .systemGray3
         button.layer.cornerRadius = 30 / 2
         button.setTitleColor(.darkGray, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         return button
     }()
     
@@ -268,6 +272,7 @@ class CryptoDetailController: UIViewController {
         button.backgroundColor = .systemGray3
         button.layer.cornerRadius = 30 / 2
         button.setTitleColor(.darkGray, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         return button
     }()
     
@@ -277,6 +282,7 @@ class CryptoDetailController: UIViewController {
         button.backgroundColor = .systemGray3
         button.layer.cornerRadius = 30 / 2
         button.setTitleColor(.darkGray, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         return button
     }()
     
@@ -286,6 +292,7 @@ class CryptoDetailController: UIViewController {
         button.backgroundColor = .systemGray3
         button.layer.cornerRadius = 30 / 2
         button.setTitleColor(.darkGray, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         return button
     }()
     
@@ -295,8 +302,11 @@ class CryptoDetailController: UIViewController {
         button.backgroundColor = .systemGray3
         button.layer.cornerRadius = 30 / 2
         button.setTitleColor(.darkGray, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         return button
     }()
+    
+    private lazy var optionButtons = CryptoDetailView()
     
     // MARK: - Lifecycle
     

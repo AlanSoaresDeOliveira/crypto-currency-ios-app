@@ -46,6 +46,9 @@
 		0746199625E3F4BE0035C143 /* TransactionHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0746199525E3F4BE0035C143 /* TransactionHistoryCell.swift */; };
 		076DFD7A25E6975E00FB0883 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076DFD7925E6975E00FB0883 /* HeaderView.swift */; };
 		07BE28A625E6BE9500BB4E20 /* CoinAboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BE28A525E6BE9500BB4E20 /* CoinAboutView.swift */; };
+		07E5C1DD25E930900023DFFE /* CryptoDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5C1DC25E930900023DFFE /* CryptoDetailCell.swift */; };
+		07E5C1E025E933AD0023DFFE /* CryptoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5C1DF25E933AD0023DFFE /* CryptoDetailView.swift */; };
+		07E5C1E325E941880023DFFE /* CryptoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E5C1E225E941880023DFFE /* CryptoDetailViewModel.swift */; };
 		07F1C76B25E2CAA7009829DE /* TrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F1C76A25E2CAA7009829DE /* TrendingCell.swift */; };
 		07F1C76E25E2E19A009829DE /* PriceAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F1C76D25E2E19A009829DE /* PriceAlertView.swift */; };
 		FC6BF2BCF55672D345512132 /* Pods_cryptocurrencyIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A957A175A7CC32B56585298 /* Pods_cryptocurrencyIOS.framework */; };
@@ -93,6 +96,9 @@
 		0746199525E3F4BE0035C143 /* TransactionHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryCell.swift; sourceTree = "<group>"; };
 		076DFD7925E6975E00FB0883 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		07BE28A525E6BE9500BB4E20 /* CoinAboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAboutView.swift; sourceTree = "<group>"; };
+		07E5C1DC25E930900023DFFE /* CryptoDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailCell.swift; sourceTree = "<group>"; };
+		07E5C1DF25E933AD0023DFFE /* CryptoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailView.swift; sourceTree = "<group>"; };
+		07E5C1E225E941880023DFFE /* CryptoDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailViewModel.swift; sourceTree = "<group>"; };
 		07F1C76A25E2CAA7009829DE /* TrendingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCell.swift; sourceTree = "<group>"; };
 		07F1C76D25E2E19A009829DE /* PriceAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceAlertView.swift; sourceTree = "<group>"; };
 		1310F0C11F24471B0A850B1E /* Pods-cryptocurrencyIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cryptocurrencyIOS.debug.xcconfig"; path = "Target Support Files/Pods-cryptocurrencyIOS/Pods-cryptocurrencyIOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -202,6 +208,8 @@
 				07BE28A525E6BE9500BB4E20 /* CoinAboutView.swift */,
 				0742641725E8077F004E1729 /* ChartView.swift */,
 				0742641A25E81B6F004E1729 /* ChartViewCell.swift */,
+				07E5C1DC25E930900023DFFE /* CryptoDetailCell.swift */,
+				07E5C1DF25E933AD0023DFFE /* CryptoDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -209,6 +217,7 @@
 		0706331125E283E9003041E3 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				07E5C1E225E941880023DFFE /* CryptoDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -393,7 +402,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0706331525E286C9003041E3 /* HomeController.swift in Sources */,
+				07E5C1E325E941880023DFFE /* CryptoDetailViewModel.swift in Sources */,
 				070632D825E28175003041E3 /* MainController.swift in Sources */,
+				07E5C1DD25E930900023DFFE /* CryptoDetailCell.swift in Sources */,
 				0706331C25E2874C003041E3 /* TransactionController.swift in Sources */,
 				07BE28A625E6BE9500BB4E20 /* CoinAboutView.swift in Sources */,
 				07F1C76B25E2CAA7009829DE /* TrendingCell.swift in Sources */,
@@ -407,6 +418,7 @@
 				0706332125E28856003041E3 /* PortifolioController.swift in Sources */,
 				0706332425E2887A003041E3 /* TransactionCenterController.swift in Sources */,
 				0706332A25E2889E003041E3 /* SettingsController.swift in Sources */,
+				07E5C1E025E933AD0023DFFE /* CryptoDetailView.swift in Sources */,
 				0742641B25E81B6F004E1729 /* ChartViewCell.swift in Sources */,
 				0706332725E2888F003041E3 /* PricesController.swift in Sources */,
 				073F09C625E51D15007AE1B0 /* TransactionCellTable.swift in Sources */,
